@@ -1,5 +1,5 @@
-import React from 'react';
-import { X, Image as ImageIcon } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 
 interface ImageViewerModalProps {
   isOpen: boolean;
@@ -14,43 +14,44 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
   title,
   onClose,
 }) => {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onCloseRef.current();
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/80 backdrop-blur-xs animate-fadeIn">
-      <div 
-        className="fixed inset-0" 
-        onClick={onClose}
-      />
-      <div className="relative max-w-5xl w-full bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-2xl z-10">
-        
-        {/* Header */}
-        <div className="p-4 sm:p-5 bg-[#faf8f5] border-b border-stone-200 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ImageIcon className="w-4 h-4 text-stone-700" />
-            <span className="font-serif-display text-sm sm:text-base font-bold text-stone-900">
-              {title}
-            </span>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 transition-colors"
-            aria-label="Close modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Body Image */}
-        <div className="relative aspect-[16/10] sm:aspect-[16/9] max-h-[75vh] w-full bg-stone-950 flex items-center justify-center overflow-hidden">
-          <img
-            src={imageSrc}
-            alt={title}
-            className="max-w-full max-h-[75vh] object-contain"
-          />
-        </div>
-
+    <div className="fixed inset-0 z-[80] bg-ink/95 flex flex-col animate-fadeIn">
+      <div className="flex items-center justify-between px-5 sm:px-8 h-16 text-ivory">
+        <p className="font-display text-xl">{title}</p>
+        <button
+          onClick={onClose}
+          className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center"
+          aria-label="Close photo"
+        >
+          <X className="w-4 h-4" />
+        </button>
       </div>
+      <button className="flex-1 flex items-center justify-center px-4 pb-8" onClick={onClose}>
+        <img
+          src={imageSrc}
+          alt={title}
+          className="max-w-full max-h-[calc(100svh-6rem)] object-contain"
+          onClick={(event) => event.stopPropagation()}
+        />
+      </button>
     </div>
   );
 };

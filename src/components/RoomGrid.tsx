@@ -2,57 +2,50 @@ import React, { useState } from 'react';
 import { ROOMS } from '../data/hotelData';
 import { RoomCard } from './RoomCard';
 import { Room } from '../types/hotel';
-import { BedDouble } from 'lucide-react';
 
 interface RoomGridProps {
   onBookRoom: (roomId: string) => void;
   onOpenRoomModal: (room: Room) => void;
 }
 
+const categories = [
+  { id: 'all', label: 'All rooms' },
+  { id: 'presidential', label: 'Signature' },
+  { id: 'suite', label: 'Suites' },
+  { id: 'family', label: 'Family' },
+  { id: 'deluxe', label: 'Deluxe' },
+  { id: 'classic', label: 'Classic' },
+];
+
 export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal }) => {
-  const [activeTab, setActiveTab] = useState<string>('all');
+  const [activeTab, setActiveTab] = useState('all');
 
-  const categories = [
-    { id: 'all', label: 'All Accommodations' },
-    { id: 'presidential', label: 'Presidential Suite' },
-    { id: 'suite', label: 'Suites' },
-    { id: 'family', label: 'Family Double' },
-    { id: 'deluxe', label: 'Deluxe AC' },
-    { id: 'classic', label: 'Classic AC' },
-  ];
-
-  const filteredRooms = activeTab === 'all'
-    ? ROOMS
-    : ROOMS.filter(r => r.category === activeTab);
+  const filteredRooms = activeTab === 'all' ? ROOMS : ROOMS.filter((room) => room.category === activeTab);
 
   return (
-    <section id="rooms" className="py-16 lg:py-24 bg-[#faf8f5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/60 text-stone-800 text-xs uppercase tracking-widest font-semibold">
-            <BedDouble className="w-3.5 h-3.5 text-stone-700" />
-            Rooms & Pricing
+    <section id="rooms" className="scroll-mt-24 bg-paper py-20 lg:py-28 border-t border-line">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
+          <div className="max-w-xl">
+            <p className="text-[11px] tracking-[0.32em] uppercase text-brass">The rooms</p>
+            <h2 className="font-display text-5xl sm:text-6xl leading-[0.95] mt-4">
+              Seven ways to stay the night.
+            </h2>
           </div>
-          <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-            Designed for <span className="text-amber-800">Your Comfort</span>
-          </h2>
-          <p className="text-stone-600 text-sm sm:text-base font-normal">
-            Every room at Vansh Hotel includes 24-hour air conditioning, power backup generator, attached bathroom, clean linens, and front desk assistance.
+          <p className="max-w-sm text-ink/65 leading-relaxed">
+            Air conditioning, attached bath, fresh linen, and a desk that answers. Rates shown are per night.
           </p>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
+        <div className="flex gap-2 overflow-x-auto pb-2 mb-8">
           {categories.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+              className={`shrink-0 px-4 py-2 rounded-full text-sm transition-colors ${
                 activeTab === tab.id
-                  ? 'bg-stone-900 text-white shadow-sm'
-                  : 'bg-white border border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50'
+                  ? 'bg-ink text-ivory'
+                  : 'bg-ivory text-ink/70 hover:text-ink'
               }`}
             >
               {tab.label}
@@ -60,18 +53,18 @@ export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal 
           ))}
         </div>
 
-        {/* Room Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredRooms.map((room) => (
-            <RoomCard
-              key={room.id}
-              room={room}
-              onBookRoom={onBookRoom}
-              onOpenRoomModal={onOpenRoomModal}
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {filteredRooms.map((room, index) => (
+            <div key={room.id} className={index === 0 && activeTab === 'all' ? 'lg:col-span-2' : ''}>
+              <RoomCard
+                room={room}
+                featured={index === 0 && activeTab === 'all'}
+                onBookRoom={onBookRoom}
+                onOpenRoomModal={onOpenRoomModal}
+              />
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );

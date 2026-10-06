@@ -8,6 +8,7 @@ import { QuickBookingForm } from './components/QuickBookingForm';
 import { TestimonialsAndFaq } from './components/TestimonialsAndFaq';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
+import { Welcome } from './components/Welcome';
 import { FloatingMobileBar } from './components/FloatingMobileBar';
 import { RoomDetailModal } from './components/RoomDetailModal';
 import { ImageViewerModal } from './components/ImageViewerModal';
@@ -41,19 +42,16 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] text-stone-900 flex flex-col font-sans selection:bg-amber-100 selection:text-amber-900">
-      
-      {/* Sticky Header Navigation */}
+    <div className="min-h-screen bg-ivory text-ink flex flex-col font-sans">
       <Navbar onOpenBooking={handleOpenBooking} />
 
-      {/* Hero Touch-Enabled Carousel featuring all 5 uploaded photos */}
       <HeroCarousel
         onSelectRoom={handleOpenBooking}
         onOpenLightbox={handleOpenLightbox}
       />
 
-      {/* Main Content Sections */}
       <main className="flex-grow">
+        <Welcome />
         
         {/* Rooms Grid with Category Filter Tabs */}
         <RoomGrid

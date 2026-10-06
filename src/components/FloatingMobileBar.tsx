@@ -1,31 +1,54 @@
-import React from 'react';
-import { HOTEL_INFO } from '../data/hotelData';
-import { Phone, MessageSquare } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { HOTEL_INFO, whatsappLink } from '../data/hotelData';
+import { Phone, MessageCircle } from 'lucide-react';
 
 interface FloatingMobileBarProps {
   onOpenBooking: () => void;
 }
 
 export const FloatingMobileBar: React.FC<FloatingMobileBarProps> = ({ onOpenBooking }) => {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-white/95 backdrop-blur-md border-t border-stone-200 p-3 shadow-lg">
-      <div className="grid grid-cols-2 gap-2 max-w-md mx-auto">
-        <a
-          href={`tel:${HOTEL_INFO.primaryPhone}`}
-          className="py-3 px-3 rounded-xl border border-stone-300 text-stone-800 font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 bg-stone-50"
-        >
-          <Phone className="w-4 h-4 text-stone-600" />
-          Call Desk
-        </a>
+  const [overHero, setOverHero] = useState(true);
+  const chat = whatsappLink('Hello, I would like to enquire about a room at Vansh Hotel.');
 
-        <button
-          onClick={onOpenBooking}
-          className="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center justify-center gap-2"
-        >
-          <MessageSquare className="w-4 h-4" />
-          WhatsApp Book
-        </button>
+  useEffect(() => {
+    const onScroll = () => setOverHero(window.scrollY < window.innerHeight - 120);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <>
+      <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-paper/95 backdrop-blur-md border-t border-line px-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="grid grid-cols-2 gap-2">
+          <a
+            href={`tel:+91${HOTEL_INFO.primaryPhone}`}
+            className="py-3 rounded-full border border-line text-sm tracking-[0.12em] uppercase flex items-center justify-center gap-2"
+          >
+            <Phone className="w-4 h-4" />
+            Call
+          </a>
+          <button
+            onClick={onOpenBooking}
+            className="py-3 rounded-full bg-moss text-white text-sm tracking-[0.12em] uppercase flex items-center justify-center gap-2"
+          >
+            <MessageCircle className="w-4 h-4" />
+            WhatsApp
+          </button>
+        </div>
       </div>
-    </div>
+
+      <a
+        href={chat}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`hidden sm:flex fixed right-6 z-40 items-center gap-3 pl-4 pr-5 py-3 rounded-full bg-moss text-white shadow-lg shadow-ink/20 hover:bg-ink transition-all ${
+          overHero ? 'bottom-24' : 'bottom-6'
+        }`}
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span className="text-sm tracking-[0.12em] uppercase">WhatsApp</span>
+      </a>
+    </>
   );
 };

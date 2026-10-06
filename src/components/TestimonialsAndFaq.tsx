@@ -1,126 +1,71 @@
 import React, { useState } from 'react';
 import { TESTIMONIALS, FAQS } from '../data/hotelData';
-import { Star, Quote, ChevronDown, HelpCircle } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 export const TestimonialsAndFaq: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const toggleFaq = (idx: number) => {
-    setOpenFaq(openFaq === idx ? null : idx);
-  };
-
   return (
-    <div className="bg-[#faf8f5]">
-      
-      {/* Testimonials */}
-      <section id="reviews" className="py-16 lg:py-24 border-t border-stone-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs uppercase tracking-widest font-semibold">
-              <Quote className="w-3.5 h-3.5" />
-              Guest Reviews
-            </div>
-            <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-              What Guest Say <span className="text-amber-800">About Us</span>
-            </h2>
-            <p className="text-stone-600 text-sm sm:text-base font-normal">
-              Real feedback from travelers, medical representatives, and families who stayed at Vansh Hotel in Bidhuna.
-            </p>
-          </div>
+    <div className="bg-ivory">
+      <section id="reviews" className="scroll-mt-24 py-20 lg:py-28 border-t border-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+          <p className="text-[11px] tracking-[0.32em] uppercase text-brass">Guests</p>
+          <h2 className="font-display text-5xl sm:text-6xl leading-[0.95] mt-4 max-w-xl">
+            What people remember.
+          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.id}
-                className="card-clean p-6 sm:p-8 flex flex-col justify-between space-y-6"
-              >
-                <div className="space-y-4">
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
-                  </div>
-
-                  <p className="text-sm text-stone-700 leading-relaxed italic font-normal">
-                    "{t.comment}"
-                  </p>
+          <div className="mt-14 grid lg:grid-cols-3 gap-10 lg:gap-12">
+            {TESTIMONIALS.map((review, index) => (
+              <figure key={review.id} className={index === 0 ? 'lg:pt-0' : 'lg:pt-16'}>
+                <div className="flex gap-1 text-brass text-sm tracking-widest" aria-label={`${review.rating} stars`}>
+                  {'★★★★★'.slice(0, review.rating)}
                 </div>
-
-                <div className="pt-4 border-t border-stone-200 flex items-center justify-between">
-                  <div>
-                    <h4 className="font-serif-display text-sm font-bold text-stone-900">
-                      {t.name}
-                    </h4>
-                    <span className="text-xs text-stone-500">
-                      {t.location} • {t.roomType}
-                    </span>
-                  </div>
-                  <span className="text-xs text-stone-400">
-                    {t.date}
+                <blockquote className="font-display italic text-2xl sm:text-[1.7rem] leading-snug mt-5 text-ink">
+                  “{review.comment}”
+                </blockquote>
+                <figcaption className="mt-6 text-sm text-ink/60">
+                  <span className="text-ink">{review.name}</span>
+                  <span> · {review.location}</span>
+                  <span className="block mt-1 text-xs tracking-[0.14em] uppercase">
+                    {review.roomType} · {review.date}
                   </span>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-16 lg:py-24 border-t border-stone-200">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center space-y-3 mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/60 text-stone-800 text-xs uppercase tracking-widest font-semibold">
-              <HelpCircle className="w-3.5 h-3.5 text-stone-700" />
-              Frequently Asked Questions
-            </div>
-            <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-              Got <span className="text-amber-800">Questions?</span>
-            </h2>
+      <section id="faq" className="scroll-mt-24 py-8 lg:py-16">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] tracking-[0.32em] uppercase text-brass">Questions</p>
+            <h2 className="font-display text-5xl leading-[0.95] mt-4">Before you travel.</h2>
           </div>
-
-          <div className="space-y-4">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openFaq === idx;
+          <div className="lg:col-span-8 border-t border-ink/15">
+            {FAQS.map((faq, index) => {
+              const open = openFaq === index;
               return (
-                <div
-                  key={idx}
-                  className={`rounded-2xl border transition-colors overflow-hidden ${
-                    isOpen
-                      ? 'bg-white border-stone-300 shadow-sm'
-                      : 'bg-white/70 border-stone-200 hover:border-stone-300'
-                  }`}
-                >
+                <div key={faq.q} className="border-b border-ink/15">
                   <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4"
+                    onClick={() => setOpenFaq(open ? null : index)}
+                    className="w-full py-6 flex items-start justify-between gap-6 text-left"
+                    aria-expanded={open}
                   >
-                    <span className="font-serif-display text-base sm:text-lg font-bold text-stone-900">
-                      {faq.q}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
+                    <span className="font-display text-2xl sm:text-3xl">{faq.q}</span>
+                    <Plus
+                      className={`w-5 h-5 mt-2 shrink-0 transition-transform ${open ? 'rotate-45' : ''}`}
                     />
                   </button>
-
-                  {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-4 font-normal">
-                      {faq.a}
-                    </div>
+                  {open && (
+                    <p className="pb-6 max-w-2xl text-ink/70 leading-relaxed">{faq.a}</p>
                   )}
                 </div>
               );
             })}
           </div>
-
         </div>
       </section>
-
     </div>
   );
 };

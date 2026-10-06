@@ -1,16 +1,26 @@
 import { Room, CarouselSlide, Amenity, Testimonial } from '../types/hotel';
 
 export const HOTEL_INFO = {
-  name: "Vansh Hotel & Suites",
-  tagline: "Warm Hospitality & Comfortable Stay in Bidhuna",
+  name: "Vansh Hotel",
+  tagline: "A calm, air-conditioned stay on Bharthana Road",
   address: "Vansh Plaza, Bharthana Road, Bidhuna, Auraiya, UP 206243",
   plusCode: "RG32+5C7",
-  primaryPhone: "9535047946",
-  secondaryPhone: "9756113185",
-  whatsappPhone: "919535047946",
+  primaryPhone: "9045555604",
+  mobileDisplay: "+91 90455 55604",
+  landline: "05681358855",
+  landlineDisplay: "05681-358855",
+  whatsapp: "9760662179",
+  whatsappDisplay: "+91 97606 62179",
+  whatsappPhone: "919760662179",
+  email: "vanshhotel92@gmail.com",
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=26.802919,79.501043",
   justdialUrl: "https://www.justdial.com/Auraiya/Vansh-Hotel-Bidhuna-Bharthana-Road-Bidhuna-Auraiya-Bidhuna/9999P5683-5683-250419084853-M5R5_BZDET",
   embedMapUrl: "https://maps.google.com/maps?q=26.802919,79.501043&hl=en&z=17&output=embed"
+};
+
+export const whatsappLink = (text?: string) => {
+  const base = `https://wa.me/${HOTEL_INFO.whatsappPhone}`;
+  return text ? `${base}?text=${encodeURIComponent(text)}` : base;
 };
 
 export const CAROUSEL_SLIDES: CarouselSlide[] = [
@@ -331,7 +341,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export const FAQS = [
   {
     q: "How can I book a room instantly?",
-    a: "Click any 'Send WhatsApp Enquiry' button on our website. Your room preference and date details will automatically fill in a WhatsApp message directly to our desk at 95350 47946."
+    a: "Choose your room and dates, then send the enquiry. It opens a WhatsApp chat with our desk on +91 97606 62179, with your stay details already filled in."
   },
   {
     q: "Is the hotel open 24 hours for check-in?",

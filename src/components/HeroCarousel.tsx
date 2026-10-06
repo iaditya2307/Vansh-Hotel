@@ -1,16 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CAROUSEL_SLIDES } from '../data/hotelData';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  MessageSquare, 
-  Maximize2, 
-  Pause, 
-  Play,
-  ShieldCheck,
-  CheckCircle,
-  MapPin
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
 
 interface HeroCarouselProps {
   onSelectRoom: (roomId?: string) => void;
@@ -19,211 +9,131 @@ interface HeroCarouselProps {
 
 export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onSelectRoom, onOpenLightbox }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % CAROUSEL_SLIDES.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + CAROUSEL_SLIDES.length) % CAROUSEL_SLIDES.length);
-  };
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % CAROUSEL_SLIDES.length);
+  const prevSlide = () =>
+    setCurrentIndex((prev) => (prev - 1 + CAROUSEL_SLIDES.length) % CAROUSEL_SLIDES.length);
 
   useEffect(() => {
-    if (isPlaying) {
-      timerRef.current = setInterval(() => {
-        nextSlide();
-      }, 6000);
-    }
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [currentIndex, isPlaying]);
+    const timer = window.setInterval(nextSlide, 7000);
+    return () => window.clearInterval(timer);
+  }, [currentIndex]);
 
-  const currentSlide = CAROUSEL_SLIDES[currentIndex];
+  const slide = CAROUSEL_SLIDES[currentIndex];
 
   return (
-    <section className="relative w-full pt-2 pb-10 bg-[#faf8f5]">
-      <div className="w-full max-w-[1440px] mx-auto px-2 sm:px-4 lg:px-6">
-        
-        {/* Main Landscape Photo Carousel Container */}
-        <div className="relative w-full rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl border border-stone-200/80 bg-stone-900 group">
-          
-          {/* Full Landscape Aspect Ratio Viewport */}
-          <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] xl:aspect-[2.35/1] w-full overflow-hidden">
-            {CAROUSEL_SLIDES.map((slide, index) => (
-              <div
-                key={slide.id}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+    <section id="top" className="relative h-[100svh] min-h-[680px] bg-ink text-white overflow-hidden">
+      {CAROUSEL_SLIDES.map((item, index) => (
+        <button
+          key={item.id}
+          type="button"
+          onClick={() => onOpenLightbox(item.image, item.title)}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+          aria-label={`View ${item.title}`}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className={`w-full h-full object-cover ${index === currentIndex ? 'ken-burns' : ''}`}
+          />
+        </button>
+      ))}
+
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-ink/10" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/55 via-transparent to-transparent" />
+
+      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-end pb-44 sm:pb-32">
+        <div className="max-w-3xl">
+          <p className="text-[11px] sm:text-xs tracking-[0.32em] uppercase text-brass-bright mb-5">
+            {slide.tag} · Bharthana Road
+          </p>
+          <h1 className="font-display text-[3.1rem] sm:text-7xl lg:text-[5.6rem] leading-[0.92] font-medium tracking-tight">
+            {slide.title}
+          </h1>
+          <p className="mt-5 max-w-xl text-base sm:text-lg text-white/80 font-light leading-relaxed">
+            {slide.subtitle}
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => onSelectRoom(slide.roomId)}
+              className="px-6 py-3.5 rounded-full bg-ivory text-ink text-sm tracking-[0.12em] uppercase hover:bg-brass-bright transition-colors"
+            >
+              Reserve this room
+            </button>
+            <a
+              href="#rooms"
+              className="px-6 py-3.5 rounded-full border border-white/35 text-white text-sm tracking-[0.12em] uppercase hover:bg-white/10 transition-colors"
+            >
+              View the stay
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute z-20 bottom-[5.25rem] sm:bottom-6 left-0 right-0 px-5 sm:px-8">
+        <div className="max-w-[1400px] mx-auto flex items-end justify-between gap-4">
+          <div className="hidden md:flex items-center gap-2">
+            {CAROUSEL_SLIDES.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrentIndex(index)}
+                className={`relative h-14 w-20 overflow-hidden rounded-lg transition-all ${
                   index === currentIndex
-                    ? 'opacity-100 z-10'
-                    : 'opacity-0 pointer-events-none z-0'
+                    ? 'ring-2 ring-brass-bright opacity-100'
+                    : 'opacity-55 hover:opacity-100'
                 }`}
+                aria-label={item.title}
               >
-                {/* Razor-Sharp HD Landscape Image (No Blur) */}
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="w-full h-full object-cover object-center transform scale-100 transition-transform duration-1000"
-                />
-
-                {/* Crystal Clear Light Overlay (Only bottom gradient for legibility - No center blur or heavy darkness) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-stone-950/30" />
-                <div className="absolute inset-0 bg-gradient-to-r from-stone-950/70 via-transparent to-transparent" />
-
-                {/* Content Overlay Layer */}
-                <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8 lg:p-10 z-20">
-                  
-                  {/* Top Controls Bar: Tag Badge & Action Icons */}
-                  <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/80 backdrop-blur-md text-amber-300 border border-stone-700/60 text-xs font-semibold tracking-wide shadow-md">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      {slide.tag}
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => onOpenLightbox(slide.image, slide.title)}
-                        className="p-2.5 rounded-full bg-stone-900/80 backdrop-blur-md text-stone-200 hover:bg-white hover:text-stone-900 transition-all border border-stone-700/60 shadow-md"
-                        title="View Full Resolution Landscape Photo"
-                      >
-                        <Maximize2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className="p-2.5 rounded-full bg-stone-900/80 backdrop-blur-md text-stone-200 hover:bg-white hover:text-stone-900 transition-all border border-stone-700/60 shadow-md"
-                        title={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
-                      >
-                        {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Main Landscape Photo Information */}
-                  <div className="max-w-2xl space-y-2 sm:space-y-3">
-                    <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs font-semibold uppercase tracking-widest bg-stone-900/60 px-2.5 py-1 rounded-md backdrop-blur-xs w-fit">
-                      <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                      Vansh Hotel • Bharthana Road, Bidhuna
-                    </div>
-                    
-                    <h1 className="font-serif-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight drop-shadow-md">
-                      {slide.title}
-                    </h1>
-                    
-                    <p className="text-xs sm:text-sm lg:text-base text-stone-100 font-normal leading-relaxed max-w-xl drop-shadow-xs">
-                      {slide.subtitle}
-                    </p>
-
-                    <div className="pt-2 flex flex-wrap items-center gap-3">
-                      <button
-                        onClick={() => onSelectRoom(slide.roomId)}
-                        className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg flex items-center gap-2 transition-all hover:scale-102"
-                      >
-                        <MessageSquare className="w-4 h-4" />
-                        Book Room via WhatsApp
-                      </button>
-                      
-                      <a
-                        href="#rooms"
-                        className="px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-white/90 hover:bg-white text-stone-900 font-bold text-xs sm:text-sm tracking-wide shadow-md transition-colors"
-                      >
-                        View All Rooms
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
+                <img src={item.image} alt="" className="w-full h-full object-cover" />
+              </button>
             ))}
           </div>
 
-          {/* Navigation Arrow Controls */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-stone-900/80 hover:bg-white text-white hover:text-stone-900 transition-all border border-stone-700/60 shadow-lg backdrop-blur-sm"
-            aria-label="Previous landscape photo"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-stone-900/80 hover:bg-white text-white hover:text-stone-900 transition-all border border-stone-700/60 shadow-lg backdrop-blur-sm"
-            aria-label="Next landscape photo"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-
-        </div>
-
-        {/* Crisp Full Landscape Photo Carousel Thumbnails */}
-        <div className="mt-4 grid grid-cols-5 gap-2 sm:gap-3">
-          {CAROUSEL_SLIDES.map((slide, idx) => (
-            <button
-              key={slide.id}
-              onClick={() => setCurrentIndex(idx)}
-              className={`relative rounded-xl overflow-hidden border-2 transition-all aspect-[16/10] group ${
-                idx === currentIndex
-                  ? 'border-amber-600 ring-2 ring-amber-500/40 shadow-md scale-[1.02]'
-                  : 'border-stone-300/80 opacity-75 hover:opacity-100 hover:border-amber-400'
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+          <div className="flex md:hidden items-center gap-2">
+            {CAROUSEL_SLIDES.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-1.5 rounded-full transition-all ${
+                  index === currentIndex ? 'w-8 bg-brass-bright' : 'w-3 bg-white/40'
+                }`}
+                aria-label={item.title}
               />
-              {idx !== currentIndex && (
-                <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors" />
-              )}
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="font-display text-lg tabular-nums text-white/90">
+              0{currentIndex + 1}
+              <span className="text-white/40"> / 0{CAROUSEL_SLIDES.length}</span>
+            </span>
+            <button
+              onClick={prevSlide}
+              className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-ink transition-colors"
+              aria-label="Previous photo"
+            >
+              <ChevronLeft className="w-5 h-5" />
             </button>
-          ))}
-        </div>
-
-        {/* Quick Highlights Bar */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-white border border-stone-200 shadow-xs">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-800">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-stone-900 block">24/7 Power Backup</span>
-              <span className="text-[11px] text-stone-500">Uninterrupted stay</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-800">
-              <CheckCircle className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-stone-900 block">Full Air Conditioning</span>
-              <span className="text-[11px] text-stone-500">All rooms fully AC</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-800">
-              <MessageSquare className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-stone-900 block">Instant WhatsApp</span>
-              <span className="text-[11px] text-stone-500">Quick room inquiry</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-800">
-              <MapPin className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-stone-900 block">Bharthana Road</span>
-              <span className="text-[11px] text-stone-500">Prime location Bidhuna</span>
-            </div>
+            <button
+              onClick={nextSlide}
+              className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-ink transition-colors"
+              aria-label="Next photo"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
-
       </div>
+
+      <a
+        href="#welcome"
+        className="absolute z-20 right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-3 text-[10px] tracking-[0.28em] uppercase text-white/70"
+      >
+        <span className="[writing-mode:vertical-rl]">Scroll</span>
+        <ArrowDown className="w-4 h-4" />
+      </a>
     </section>
   );
 };

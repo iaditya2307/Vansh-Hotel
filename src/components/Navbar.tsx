@@ -1,174 +1,153 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Menu, X, Hotel } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Phone, Menu, X } from 'lucide-react';
 import { HOTEL_INFO } from '../data/hotelData';
 
 interface NavbarProps {
   onOpenBooking: (roomId?: string) => void;
 }
 
+const navLinks = [
+  { name: 'Stay', href: '#rooms' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'Amenities', href: '#amenities' },
+  { name: 'Visit', href: '#location' },
+  { name: 'Reviews', href: '#reviews' },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Rooms & Pricing', href: '#rooms' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Amenities', href: '#amenities' },
-    { name: 'Location', href: '#location' },
-    { name: 'Guest Reviews', href: '#reviews' },
-    { name: 'FAQ', href: '#faq' },
-  ];
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  const solid = scrolled || mobileMenuOpen;
 
   return (
     <>
-      {/* Announcement Bar */}
-      <div className="bg-stone-900 text-stone-200 text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-3">
-        <span>✨ 24/7 Air-Conditioned Rooms & Power Backup on Bharthana Road, Bidhuna</span>
-        <span className="hidden sm:inline text-stone-600">•</span>
-        <a 
-          href={`tel:${HOTEL_INFO.primaryPhone}`} 
-          className="hidden sm:inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 transition-colors"
-        >
-          <Phone className="w-3 h-3" />
-          +91 {HOTEL_INFO.primaryPhone}
-        </a>
-      </div>
-
-      {/* Main Navbar */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-[#faf8f5]/95 backdrop-blur-md border-b border-stone-200 shadow-sm py-3'
-            : 'bg-[#faf8f5]/80 backdrop-blur-sm border-b border-stone-200/60 py-4'
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+          solid
+            ? 'bg-paper/90 backdrop-blur-xl border-b border-line/80'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-stone-900 flex items-center justify-center p-1.5 shadow-sm border border-stone-800/10 group-hover:scale-105 transition-transform">
-              <img src="/logo-white.png" alt="Vansh Hotel Logo" className="w-full h-full object-contain" />
-            </div>
-            <div>
-              <span className="font-serif-display text-xl font-bold tracking-tight text-stone-900 block leading-tight">
-                Vansh Hotel
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 h-[76px] flex items-center justify-between gap-6">
+          <a href="#top" className="flex items-center gap-3 min-w-0">
+            <span
+              className={`w-11 h-11 rounded-full flex items-center justify-center p-2 shrink-0 transition-colors ${
+                solid ? 'bg-ink' : 'bg-white/10 backdrop-blur-md ring-1 ring-white/30'
+              }`}
+            >
+              <img src="/logo-white.png" alt="" className="w-full h-full object-contain" />
+            </span>
+            <span className="min-w-0">
+              <span
+                className={`font-display text-[1.35rem] leading-none tracking-tight block ${
+                  solid ? 'text-ink' : 'text-white'
+                }`}
+              >
+                Vansh
               </span>
-              <span className="text-[11px] font-medium text-stone-500 block tracking-wider uppercase">
-                Bidhuna • Auraiya
+              <span
+                className={`text-[10px] tracking-[0.28em] uppercase mt-1 block ${
+                  solid ? 'text-brass' : 'text-white/75'
+                }`}
+              >
+                Hotel · Bidhuna
               </span>
-            </div>
+            </span>
           </a>
 
-          {/* Nav Links */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs uppercase tracking-wider font-semibold text-stone-600 hover:text-amber-700 transition-colors"
+                className={`text-[13px] tracking-[0.16em] uppercase transition-colors ${
+                  solid ? 'text-ink/70 hover:text-ink' : 'text-white/80 hover:text-white'
+                }`}
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
             <a
-              href={`tel:${HOTEL_INFO.primaryPhone}`}
-              className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-100 font-medium text-xs tracking-wide flex items-center gap-1.5 transition-colors"
+              href={`tel:+91${HOTEL_INFO.primaryPhone}`}
+              className={`hidden md:inline-flex items-center gap-2 text-[13px] tracking-wide transition-colors ${
+                solid ? 'text-ink/80 hover:text-ink' : 'text-white/85 hover:text-white'
+              }`}
             >
-              <Phone className="w-3.5 h-3.5 text-stone-500" />
-              Call Reception
+              <Phone className="w-3.5 h-3.5" />
+              {HOTEL_INFO.mobileDisplay}
             </a>
             <button
               onClick={() => onOpenBooking()}
-              className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs tracking-wide shadow-sm flex items-center gap-2 transition-all"
+              className="px-5 py-2.5 rounded-full bg-brass text-white text-[13px] tracking-[0.14em] uppercase hover:bg-ink transition-colors"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              WhatsApp Booking
+              Reserve
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl border border-stone-300 text-stone-700 hover:bg-stone-100 transition-colors"
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className={`lg:hidden w-11 h-11 rounded-full flex items-center justify-center transition-colors ${
+              solid ? 'text-ink hover:bg-ivory' : 'text-white hover:bg-white/10'
+            }`}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-[#faf8f5] border-l border-stone-200 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
-            <div className="space-y-6 pt-4">
-              <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-stone-900 flex items-center justify-center p-1.5 shadow-xs">
-                    <img src="/logo-white.png" alt="Vansh Hotel Logo" className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-serif-display text-lg font-bold text-stone-900">
-                    Vansh Hotel
-                  </span>
-                </div>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm font-semibold text-stone-700 hover:text-amber-700 py-2 border-b border-stone-200/60 flex items-center justify-between"
-                  >
-                    {link.name}
-                    <span className="text-stone-400">→</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-3 pt-6 border-t border-stone-200">
+        <div className="fixed inset-0 z-40 bg-ivory lg:hidden flex flex-col pt-[76px]">
+          <nav className="flex-1 px-7 py-8 flex flex-col justify-center gap-2">
+            {navLinks.map((link, index) => (
               <a
-                href={`tel:${HOTEL_INFO.primaryPhone}`}
-                className="w-full py-3 rounded-xl border border-stone-300 text-stone-800 text-center font-semibold text-sm flex items-center justify-center gap-2 bg-white"
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-display text-5xl text-ink hover:text-brass transition-colors py-1"
               >
-                <Phone className="w-4 h-4 text-stone-600" />
-                Call +91 {HOTEL_INFO.primaryPhone}
+                <span className="text-brass text-sm tracking-[0.2em] mr-3 align-middle">
+                  0{index + 1}
+                </span>
+                {link.name}
               </a>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenBooking();
-                }}
-                className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm"
-              >
-                <MessageSquare className="w-4 h-4" />
-                WhatsApp Reservation
-              </button>
-            </div>
+            ))}
+          </nav>
+          <div className="px-7 pb-8 space-y-3 border-t border-line pt-6">
+            <a
+              href={`tel:+91${HOTEL_INFO.primaryPhone}`}
+              className="flex items-center justify-between text-ink"
+            >
+              <span className="text-xs tracking-[0.2em] uppercase text-brass">Call</span>
+              <span className="font-display text-2xl">{HOTEL_INFO.mobileDisplay}</span>
+            </a>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenBooking();
+              }}
+              className="w-full py-4 rounded-full bg-ink text-ivory tracking-[0.16em] uppercase text-sm"
+            >
+              Reserve on WhatsApp
+            </button>
           </div>
         </div>
       )}

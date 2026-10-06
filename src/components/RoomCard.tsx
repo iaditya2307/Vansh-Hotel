@@ -1,133 +1,89 @@
 import React from 'react';
 import { Room } from '../types/hotel';
-import { 
-  Users, 
-  Bed, 
-  Check, 
-  MessageSquare, 
-  Eye, 
-  Maximize2
-} from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface RoomCardProps {
   room: Room;
   onBookRoom: (roomId: string) => void;
   onOpenRoomModal: (room: Room) => void;
+  featured?: boolean;
 }
 
-export const RoomCard: React.FC<RoomCardProps> = ({ room, onBookRoom, onOpenRoomModal }) => {
+const categoryLabel: Record<Room['category'], string> = {
+  presidential: 'Signature',
+  suite: 'Suite',
+  family: 'Family',
+  deluxe: 'Deluxe',
+  classic: 'Classic',
+};
+
+export const RoomCard: React.FC<RoomCardProps> = ({ room, onBookRoom, onOpenRoomModal, featured }) => {
   return (
-    <div className="card-clean overflow-hidden flex flex-col justify-between">
-      
-      {/* Room Image */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
+    <article
+      className={`group bg-paper rounded-[1.5rem] overflow-hidden border border-line/80 flex flex-col ${
+        featured ? 'lg:flex-row lg:min-h-[420px]' : ''
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => onOpenRoomModal(room)}
+        className={`relative overflow-hidden bg-ink text-left ${
+          featured ? 'lg:w-[58%] aspect-[16/11] lg:aspect-auto' : 'aspect-[16/11]'
+        }`}
+      >
         <img
           src={room.image}
           alt={room.name}
-          className="w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
+        <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-paper/90 text-[11px] tracking-[0.18em] uppercase text-ink">
+          {categoryLabel[room.category]}
+        </span>
+        <span className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-paper text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <ArrowUpRight className="w-4 h-4" />
+        </span>
+      </button>
 
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4 flex items-center gap-2">
-          {room.isFeatured && (
-            <span className="px-3 py-1 rounded-full bg-stone-900 text-white font-semibold text-[11px] uppercase tracking-wider shadow-sm">
-              Popular Choice
-            </span>
-          )}
-          <span className="px-3 py-1 rounded-full bg-white/95 backdrop-blur-xs text-stone-800 text-[11px] font-semibold uppercase tracking-wider shadow-sm border border-stone-200/80">
-            {room.category}
-          </span>
-        </div>
-
-        {/* Gallery Photos Count */}
-        <button
-          onClick={() => onOpenRoomModal(room)}
-          className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-stone-900/80 text-white hover:bg-stone-900 text-xs font-medium flex items-center gap-1.5 transition-colors shadow-sm"
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>{room.gallery.length} Photos</span>
-        </button>
-      </div>
-
-      {/* Card Content Body */}
-      <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
-        <div className="space-y-3">
-          {/* Quick Specs */}
-          <div className="flex items-center gap-3 text-xs text-stone-500 font-medium">
-            <span className="flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-stone-700" />
-              {room.capacity}
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <Bed className="w-3.5 h-3.5 text-stone-700" />
-              {room.bedType}
-            </span>
-            <span>•</span>
+      <div className={`p-6 sm:p-7 flex flex-col justify-between gap-6 ${featured ? 'lg:flex-1' : ''}`}>
+        <div>
+          <div className="flex items-center gap-3 text-xs tracking-[0.14em] uppercase text-ink/50">
+            <span>{room.capacity}</span>
+            <span className="w-1 h-1 rounded-full bg-brass" />
             <span>{room.size}</span>
           </div>
-
-          <h3 className="font-serif-display text-xl font-bold text-stone-900">
-            {room.name}
-          </h3>
-
-          <p className="text-xs text-stone-600 leading-relaxed font-normal">
-            {room.tagline}
-          </p>
-
-          {/* Key Highlights */}
-          <ul className="space-y-1.5 pt-1">
-            {room.highlights.slice(0, 3).map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-stone-700">
-                <Check className="w-3.5 h-3.5 text-amber-700 mt-0.5 shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <h3 className="font-display text-3xl mt-3 text-ink">{room.name}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-ink/65">{room.tagline}</p>
+          <p className="mt-3 text-sm text-ink/50">{room.bedType}</p>
         </div>
 
-        {/* Pricing & Booking CTA */}
-        <div className="pt-4 border-t border-stone-200 space-y-4">
-          <div className="flex items-baseline justify-between">
-            <div>
-              <span className="text-[11px] text-stone-500 block font-medium">Nightly Rate</span>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif-display text-2xl font-bold text-stone-900">
-                  ₹{room.price.toLocaleString('en-IN')}
-                </span>
-                {room.originalPrice && (
-                  <span className="text-xs text-stone-400 line-through">
-                    ₹{room.originalPrice.toLocaleString('en-IN')}
-                  </span>
-                )}
-                <span className="text-xs text-stone-500">/ night</span>
-              </div>
-            </div>
-            <span className="text-[11px] text-emerald-700 font-semibold px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200">
-              AC Included
-            </span>
+        <div className="flex items-end justify-between gap-4 pt-2">
+          <div>
+            <p className="text-[11px] tracking-[0.18em] uppercase text-ink/45">Per night</p>
+            <p className="font-display text-3xl text-ink leading-none mt-1">
+              ₹{room.price.toLocaleString('en-IN')}
+            </p>
+            {room.originalPrice && (
+              <p className="text-xs text-ink/35 line-through mt-1">
+                ₹{room.originalPrice.toLocaleString('en-IN')}
+              </p>
+            )}
           </div>
-
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <button
               onClick={() => onOpenRoomModal(room)}
-              className="w-full py-2.5 rounded-xl border border-stone-300 text-stone-700 hover:bg-stone-50 font-semibold text-xs tracking-wide transition-colors flex items-center justify-center gap-1.5"
+              className="px-4 py-2.5 rounded-full border border-line text-xs tracking-[0.14em] uppercase text-ink hover:border-ink transition-colors"
             >
-              <Maximize2 className="w-3.5 h-3.5" />
               Details
             </button>
             <button
               onClick={() => onBookRoom(room.id)}
-              className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs tracking-wide transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+              className="px-4 py-2.5 rounded-full bg-ink text-ivory text-xs tracking-[0.14em] uppercase hover:bg-brass transition-colors"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              Book Now
+              Book
             </button>
           </div>
         </div>
-
       </div>
-
-    </div>
+    </article>
   );
 };

@@ -54,8 +54,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-amber-700 text-amber-50 flex items-center justify-center shadow-sm">
-              <Hotel className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-stone-900 flex items-center justify-center p-1.5 shadow-sm border border-stone-800/10 group-hover:scale-105 transition-transform">
+              <img src="/logo-white.png" alt="Vansh Hotel Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <span className="font-serif-display text-xl font-bold tracking-tight text-stone-900 block leading-tight">
@@ -120,7 +120,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             <div className="space-y-6 pt-4">
               <div className="flex items-center justify-between pb-4 border-b border-stone-200">
                 <div className="flex items-center gap-2.5">
-                  <Hotel className="w-6 h-6 text-amber-700" />
+                  <div className="w-9 h-9 rounded-lg bg-stone-900 flex items-center justify-center p-1.5 shadow-xs">
+                    <img src="/logo-white.png" alt="Vansh Hotel Logo" className="w-full h-full object-contain" />
+                  </div>
                   <span className="font-serif-display text-lg font-bold text-stone-900">
                     Vansh Hotel
                   </span>

@@ -16,8 +16,8 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-700 text-amber-50 flex items-center justify-center">
-                <Hotel className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 p-1.5 flex items-center justify-center">
+                <img src="/logo-white.png" alt="Vansh Hotel Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-serif-display text-xl font-bold text-white block">

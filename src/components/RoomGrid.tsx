@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ROOMS } from '../data/hotelData';
 import { RoomCard } from './RoomCard';
 import { Room } from '../types/hotel';
-import { Sparkles, Crown } from 'lucide-react';
+import { BedDouble } from 'lucide-react';
 
 interface RoomGridProps {
   onBookRoom: (roomId: string) => void;
@@ -13,9 +13,9 @@ export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal 
   const [activeTab, setActiveTab] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'All Suites & Rooms' },
-    { id: 'presidential', label: 'Presidential Gold' },
-    { id: 'suite', label: 'Royal Suites' },
+    { id: 'all', label: 'All Accommodations' },
+    { id: 'presidential', label: 'Presidential Suite' },
+    { id: 'suite', label: 'Suites' },
     { id: 'family', label: 'Family Double' },
     { id: 'deluxe', label: 'Deluxe AC' },
     { id: 'classic', label: 'Classic AC' },
@@ -26,24 +26,20 @@ export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal 
     : ROOMS.filter(r => r.category === activeTab);
 
   return (
-    <section id="rooms" className="py-16 lg:py-24 bg-slate-950 relative">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="rooms" className="py-16 lg:py-24 bg-[#faf8f5]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 text-xs uppercase tracking-widest font-semibold">
-            <Crown className="w-3.5 h-3.5 text-amber-400" />
-            Opulent Accommodations
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/60 text-stone-800 text-xs uppercase tracking-widest font-semibold">
+            <BedDouble className="w-3.5 h-3.5 text-stone-700" />
+            Rooms & Pricing
           </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Our Luxury <span className="text-gold-gradient">Suites & Rooms</span>
+          <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
+            Designed for <span className="text-amber-800">Your Comfort</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light">
-            Every room at Vansh Hotel is equipped with 24-hour climate controlled air conditioning, custom ambient illumination, high speed internet, and round-the-clock room service.
+          <p className="text-stone-600 text-sm sm:text-base font-normal">
+            Every room at Vansh Hotel includes 24-hour air conditioning, power backup generator, attached bathroom, clean linens, and front desk assistance.
           </p>
         </div>
 
@@ -53,10 +49,10 @@ export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal 
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                 activeTab === tab.id
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-lg shadow-amber-500/25 scale-105'
-                  : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-amber-500/30'
+                  ? 'bg-stone-900 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50'
               }`}
             >
               {tab.label}

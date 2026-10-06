@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GALLERY_ITEMS } from '../data/hotelData';
-import { Maximize2, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Maximize2, Image as ImageIcon } from 'lucide-react';
 
 interface PhotoGalleryProps {
   onOpenLightbox: (imageSrc: string, title: string) => void;
@@ -16,33 +16,33 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ onOpenLightbox }) =>
     : GALLERY_ITEMS.filter(item => item.category === activeFilter);
 
   return (
-    <section id="gallery" className="py-16 lg:py-24 bg-slate-900/60 relative border-t border-b border-amber-500/10">
+    <section id="gallery" className="py-16 lg:py-24 bg-white border-y border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950 border border-amber-500/30 text-amber-400 text-xs uppercase tracking-widest font-semibold">
-            <ImageIcon className="w-3.5 h-3.5" />
-            Visual Tour
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 text-stone-800 text-xs uppercase tracking-widest font-semibold border border-stone-200">
+            <ImageIcon className="w-3.5 h-3.5 text-stone-700" />
+            Photo Showcase
           </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Hotel & Suite <span className="text-gold-gradient">Gallery</span>
+          <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
+            Explore <span className="text-amber-800">Our Hotel</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light">
-            Take a visual walkthrough of our luxury rooms, 3D relief feature walls, ambient LED ceilings, royal reception desk, and guest lounge.
+          <p className="text-stone-600 text-sm sm:text-base font-normal">
+            Take a visual tour of our guest rooms, reception desk, VIP lounge area, and hotel premises.
           </p>
         </div>
 
-        {/* Gallery Filter Buttons */}
+        {/* Gallery Filter Tabs */}
         <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                 activeFilter === filter
-                  ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                  : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
+                  ? 'bg-stone-900 text-white shadow-sm'
+                  : 'bg-stone-100 text-stone-600 hover:text-stone-900 hover:bg-stone-200/70 border border-stone-200/60'
               }`}
             >
               {filter}
@@ -50,33 +50,34 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ onOpenLightbox }) =>
           ))}
         </div>
 
-        {/* Masonry / Grid Display */}
+        {/* Grid Display */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item) => (
             <div
               key={item.id}
               onClick={() => onOpenLightbox(item.image, item.title)}
-              className="group relative rounded-2xl overflow-hidden bg-slate-950 border border-amber-500/20 cursor-pointer aspect-[4/3] shadow-lg hover:shadow-2xl hover:border-amber-400/60 transition-all duration-300"
+              className="group relative rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 cursor-pointer aspect-[4/3] shadow-xs hover:shadow-md transition-shadow"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              
+              <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-stone-950/40 transition-colors" />
 
               <div className="absolute inset-0 p-5 flex flex-col justify-between">
                 <div className="flex justify-end">
-                  <span className="p-2 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="p-2 rounded-lg bg-white/90 text-stone-900 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <Maximize2 className="w-4 h-4" />
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400 block mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-300 block mb-1">
                     {item.category}
                   </span>
-                  <h4 className="font-cinzel text-base sm:text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                  <h4 className="font-serif-display text-base sm:text-lg font-bold text-white">
                     {item.title}
                   </h4>
                 </div>

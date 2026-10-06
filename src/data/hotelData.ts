@@ -1,8 +1,8 @@
 import { Room, CarouselSlide, Amenity, Testimonial } from '../types/hotel';
 
 export const HOTEL_INFO = {
-  name: "Vansh Hotel & Royal Suites",
-  tagline: "Opulent Hospitality & Unmatched Comfort in Bidhuna",
+  name: "Vansh Hotel & Suites",
+  tagline: "Warm Hospitality & Comfortable Stay in Bidhuna",
   address: "Vansh Plaza, Bharthana Road, Bidhuna, Auraiya, UP 206243",
   plusCode: "RG32+5C7",
   primaryPhone: "9535047946",
@@ -16,27 +16,27 @@ export const HOTEL_INFO = {
 export const CAROUSEL_SLIDES: CarouselSlide[] = [
   {
     id: "slide-1",
-    title: "Presidential Gold Suite",
-    subtitle: "Features 3D Royal Wall Sculpture, Emerald Velvet Headboard & Ambient Cove Lighting",
-    tag: "Crown Luxury",
+    title: "Presidential Suite",
+    subtitle: "Spacious luxury with 3D relief wall, emerald velvet headboard & warm ambient lighting",
+    tag: "Signature Stay",
     image: "/images/presidential-gold-suite.jpg",
     roomId: "presidential-gold",
-    ctaText: "Explore Presidential Suite"
+    ctaText: "View Presidential Suite"
   },
   {
     id: "slide-2",
     title: "Royal Emerald Suite",
-    subtitle: "Signature Glowing Ceiling LED Lighting Ring & Premium Silk Striped Interior",
-    tag: "Royal Ambience",
+    subtitle: "Relaxing ambient ceiling LED halo with cozy striped wall interior",
+    tag: "Guest Favorite",
     image: "/images/royal-emerald-suite.jpg",
     roomId: "royal-emerald",
     ctaText: "View Emerald Suite"
   },
   {
     id: "slide-3",
-    title: "Family Grand Double Suite",
-    subtitle: "Spacious Twin Double Beds Designed for Family & Group Luxury Comfort",
-    tag: "Family Special",
+    title: "Family Grand Suite",
+    subtitle: "Twin double beds thoughtfully designed for families and group comfort",
+    tag: "Family Choice",
     image: "/images/family-grand-suite.jpg",
     roomId: "family-grand",
     ctaText: "Book Family Suite"
@@ -44,8 +44,8 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
   {
     id: "slide-4",
     title: "Maharaja Luxury Room",
-    subtitle: "Dark Italian Marble Accents, Tufted Headboard & Marble Bedside Station",
-    tag: "Opulent Stay",
+    subtitle: "Elegant dark marble accents, tufted headboard & peaceful room setting",
+    tag: "Premium Room",
     image: "/images/maharaja-luxury-room.jpg",
     roomId: "maharaja-luxury",
     ctaText: "Book Maharaja Room"
@@ -53,20 +53,20 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
   {
     id: "slide-5",
     title: "Executive Timber Room",
-    subtitle: "Warm Teak Wood Wall Panels with Custom Lounge Seating & Modern AC",
-    tag: "Executive Comfort",
+    subtitle: "Teak wood style panelling with comfortable green lounge seating & full AC",
+    tag: "Executive Stay",
     image: "/images/executive-timber-room.jpg",
     roomId: "executive-timber",
-    ctaText: "Explore Executive Room"
+    ctaText: "View Executive Room"
   }
 ];
 
 export const ROOMS: Room[] = [
   {
     id: "presidential-gold",
-    name: "Presidential Gold Suite",
+    name: "Presidential Suite",
     category: "presidential",
-    tagline: "The Pinnacle of Opulence with 3D Relief Artwork & Velvet Headboard",
+    tagline: "Our finest spacious suite featuring a 3D feature wall & plush velvet headboard",
     price: 1899,
     originalPrice: 2499,
     capacity: "2-3 Guests",
@@ -79,25 +79,25 @@ export const ROOMS: Room[] = [
       "/images/lounge.jpg",
       "/images/corridor.jpg"
     ],
-    description: "Immerse yourself in supreme grandeur. Features a spectacular 3D gold relief feature wall, emerald velvet tufted headboard, ambient ceiling cove lighting, silent split air conditioning, and luxury marble flooring.",
+    description: "Designed for guest comfort and space. Features a beautifully detailed feature wall, plush headboard, soft warm ceiling lighting, quiet air conditioning, and clean marble flooring.",
     highlights: [
-      "Signature 3D Gold Wall Sculpture",
-      "Plush Emerald Velvet Headboard",
-      "Ambient Multi-color Cove Lighting",
-      "Marble Bedside Station & Nightstand"
+      "Custom 3D Feature Wall",
+      "Plush Velvet Headboard",
+      "Soft Ambient Cove Lighting",
+      "Marble Bedside Console"
     ],
     amenities: ["Powerful AC", "24/7 Room Service", "High Speed Wi-Fi", "HD Smart TV", "Marble Bath", "Power Backup"],
     isFeatured: true
   },
   {
     id: "maharaja-luxury",
-    name: "Maharaja Luxury Room",
+    name: "Maharaja Room",
     category: "suite",
-    tagline: "Rich Dark Marble Aesthetics & Burgundy Padded Headboard",
+    tagline: "Dark marble aesthetics with rich tufted headboard & calm lighting",
     price: 1599,
     originalPrice: 1999,
     capacity: "2 Guests",
-    bedType: "Royal King Bed",
+    bedType: "King Size Bed",
     size: "300 sq. ft.",
     image: "/images/maharaja-luxury-room.jpg",
     gallery: [
@@ -105,11 +105,11 @@ export const ROOMS: Room[] = [
       "/images/lounge.jpg",
       "/images/reception.jpg"
     ],
-    description: "Designed for regal tranquility with deep black marble wall stripes, rich burgundy leatherette headboard, polished ceiling panels, and handcrafted nightstand.",
+    description: "A peaceful retreat featuring dark marble wall paneling, a comfortable padded headboard, vanity mirror, and round-the-clock air conditioning.",
     highlights: [
-      "Italian Dark Marble Texture Wall",
-      "Burgundy Leatherette Tufted Bed",
-      "Vanity Dressing Mirror Console",
+      "Dark Marble Wall Panel Accent",
+      "Tufted Leatherette Headboard",
+      "Full Vanity Dressing Mirror",
       "24h Climate Controlled AC"
     ],
     amenities: ["Air Conditioning", "Dressing Mirror", "24/7 Hot Water", "Marble Nightstand", "Daily Housekeeping"],
@@ -119,11 +119,11 @@ export const ROOMS: Room[] = [
     id: "royal-emerald",
     name: "Royal Emerald Suite",
     category: "suite",
-    tagline: "Signature Neon Emerald LED Ceiling & Striped Accent Walls",
+    tagline: "Relaxing ambient ceiling lights & elegant striped wall design",
     price: 1499,
     originalPrice: 1799,
     capacity: "2 Guests",
-    bedType: "Queen Comfort Bed",
+    bedType: "Queen Size Bed",
     size: "280 sq. ft.",
     image: "/images/royal-emerald-suite.jpg",
     gallery: [
@@ -131,21 +131,21 @@ export const ROOMS: Room[] = [
       "/images/deluxe-room.jpg",
       "/images/lounge.jpg"
     ],
-    description: "Features a dramatic neon emerald ceiling halo lighting, double-tone wall paneling, full-length vanity unit with flat TV, and ultra-plush bedding.",
+    description: "Features soft emerald ceiling halo lighting, double-tone wall styling, full-length vanity mirror, flat screen TV, and comfortable clean bedding.",
     highlights: [
-      "Neon Emerald LED Ceiling Halo",
-      "Full Mirror Dressing Station",
+      "Soft Emerald Ambient Ceiling Light",
+      "Full Mirror Dressing Unit",
       "In-room Wall Mounted TV",
-      "Warm Golden Accent Striping"
+      "Warm Accent Striping"
     ],
-    amenities: ["Neon Ceiling Ambient Light", "Flat Screen TV", "AC", "Full Mirror", "Super Soft Blanket"],
+    amenities: ["Ceiling Ambient Light", "Flat Screen TV", "AC", "Full Mirror", "Soft Clean Linens"],
     isFeatured: true
   },
   {
     id: "family-grand",
-    name: "Family Grand Double Suite",
+    name: "Family Grand Suite",
     category: "family",
-    tagline: "Twin King Beds Accommodating up to 4-6 Guests Comfortably",
+    tagline: "Twin double beds comfortably accommodating families up to 6 guests",
     price: 2499,
     originalPrice: 2999,
     capacity: "4-6 Guests",
@@ -157,11 +157,11 @@ export const ROOMS: Room[] = [
       "/images/corridor.jpg",
       "/images/reception.jpg"
     ],
-    description: "The ideal choice for families and groups travelling together. Includes two spacious double beds, custom blue padded headboards, dual ceiling fans, green LED mood lights, and room for extra bedding.",
+    description: "The perfect setup for families and traveling groups. Offers two large double beds, padded headboards, dual ceiling fans, dedicated AC, and generous floor space.",
     highlights: [
       "2 Extra Large Double Beds",
-      "Sleeps 4 to 6 Guests",
-      "Dual Ceiling Fans & AC",
+      "Comfortably Sleeps 4 to 6 Guests",
+      "Dual Ceiling Fans & Full AC",
       "Spacious Tile Walkway"
     ],
     amenities: ["Twin Double Beds", "High Capacity AC", "Dual Fans", "24h Room Service", "Private Bathroom"],
@@ -171,7 +171,7 @@ export const ROOMS: Room[] = [
     id: "executive-timber",
     name: "Executive Timber Room",
     category: "deluxe",
-    tagline: "Teak Wood Paneling with Ergonomic Green Lounge Seating",
+    tagline: "Teak wood style panelling with comfortable armchairs",
     price: 1399,
     originalPrice: 1699,
     capacity: "2 Guests",
@@ -182,12 +182,12 @@ export const ROOMS: Room[] = [
       "/images/executive-timber-room.jpg",
       "/images/lounge.jpg"
     ],
-    description: "Blends natural wood textures with modern comfort. Outfitted with vertical teak wood style walls, a sleek vanity table, and green accent seating.",
+    description: "Combines warm natural wood tones with modern guest conveniences. Features teak wood pattern walls, a mirror dressing table, and comfortable seating.",
     highlights: [
-      "Natural Teak Wood Aesthetic",
-      "Accent Armchairs",
-      "Quiet Environment",
-      "Dedicated Work/Vanity Table"
+      "Natural Teak Wood Style Wall",
+      "Comfortable Armchairs",
+      "Quiet & Peaceful Ambience",
+      "Dressing Table"
     ],
     amenities: ["Air Conditioning", "Lounge Chairs", "Dressing Mirror", "Room Service", "Clean Linens"],
     isFeatured: false
@@ -196,7 +196,7 @@ export const ROOMS: Room[] = [
     id: "deluxe-ac",
     name: "Deluxe AC Room",
     category: "deluxe",
-    tagline: "Teal Headboard & Soft Cove Warm Lighting",
+    tagline: "Teal headboard with soft warm lighting",
     price: 1299,
     originalPrice: 1499,
     capacity: "2 Guests",
@@ -207,12 +207,12 @@ export const ROOMS: Room[] = [
       "/images/deluxe-room.jpg",
       "/images/reception.jpg"
     ],
-    description: "Relaxing ambiance featuring soft cove lighting, comfortable double bed, clean linen, and efficient air conditioning for guest comfort.",
+    description: "Cozy and practical for guests seeking a clean, restful room with reliable air conditioning and prompt room service.",
     highlights: [
-      "Quilted Teal Headboard",
-      "Warm Recessed Lighting",
-      "Silent Split AC",
-      "Marble Nightstand"
+      "Teal Tufted Headboard",
+      "Soft Recessed Lighting",
+      "Quiet Split AC",
+      "Bedside Station"
     ],
     amenities: ["AC", "Double Bed", "Room Service", "24h Check-in", "Clean Bathroom"],
     isFeatured: false
@@ -221,7 +221,7 @@ export const ROOMS: Room[] = [
     id: "classic-ac",
     name: "Classic AC Room",
     category: "classic",
-    tagline: "Floral Wall Panels & Full Length Mirror",
+    tagline: "Clean comfortable room with full length mirror & air conditioning",
     price: 1099,
     originalPrice: 1299,
     capacity: "2 Guests",
@@ -232,11 +232,11 @@ export const ROOMS: Room[] = [
       "/images/classic-room.jpg",
       "/images/corridor.jpg"
     ],
-    description: "Affordable luxury with decorative floral panels, full length mirror, sturdy double bed, and round-the-clock air conditioning.",
+    description: "An affordable, spotless room featuring floral panel accents, a full mirror, sturdy double bed, and 24/7 air conditioning.",
     highlights: [
-      "Floral Patterned Wall Panels",
-      "Full Mirror Console",
-      "Compact Comfort Layout"
+      "Floral Patterned Accent Panel",
+      "Full Length Mirror",
+      "Compact & Clean Layout"
     ],
     amenities: ["Air Conditioning", "Double Bed", "Mirror", "Fast Room Service", "24 Hours Available"],
     isFeatured: false

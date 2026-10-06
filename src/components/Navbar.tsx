@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Crown, Phone, MessageSquare, Menu, X, MapPin, Sparkles } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, Hotel } from 'lucide-react';
 import { HOTEL_INFO } from '../data/hotelData';
 
 interface NavbarProps {
@@ -19,94 +19,90 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Suites & Rooms', href: '#rooms' },
-    { name: 'Photo Showcase', href: '#gallery' },
-    { name: 'Royal Amenities', href: '#amenities' },
-    { name: 'Location & Map', href: '#location' },
-    { name: 'Reviews', href: '#reviews' },
+    { name: 'Rooms & Pricing', href: '#rooms' },
+    { name: 'Gallery', href: '#gallery' },
+    { name: 'Amenities', href: '#amenities' },
+    { name: 'Location', href: '#location' },
+    { name: 'Guest Reviews', href: '#reviews' },
     { name: 'FAQ', href: '#faq' },
   ];
 
   return (
     <>
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-amber-950 via-amber-900 to-amber-950 text-amber-200 text-xs py-2 px-4 border-b border-amber-500/20 text-center flex items-center justify-center gap-3">
-        <span className="inline-flex items-center gap-1 font-medium">
-          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-          Royal AC Rooms Available 24 Hours on Bharthana Road
-        </span>
-        <span className="hidden sm:inline text-amber-500/50">•</span>
+      {/* Announcement Bar */}
+      <div className="bg-stone-900 text-stone-200 text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-3">
+        <span>✨ 24/7 Air-Conditioned Rooms & Power Backup on Bharthana Road, Bidhuna</span>
+        <span className="hidden sm:inline text-stone-600">•</span>
         <a 
           href={`tel:${HOTEL_INFO.primaryPhone}`} 
-          className="hidden sm:inline-flex items-center gap-1 hover:text-white transition-colors"
+          className="hidden sm:inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 transition-colors"
         >
-          <Phone className="w-3 h-3 text-amber-400" />
+          <Phone className="w-3 h-3" />
           +91 {HOTEL_INFO.primaryPhone}
         </a>
       </div>
 
-      {/* Main Header */}
+      {/* Main Navbar */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-slate-950/90 backdrop-blur-md border-b border-amber-500/20 py-3 shadow-xl shadow-black/50'
-            : 'bg-gradient-to-b from-slate-950/90 to-transparent py-5'
+            ? 'bg-[#faf8f5]/95 backdrop-blur-md border-b border-stone-200 shadow-sm py-3'
+            : 'bg-[#faf8f5]/80 backdrop-blur-sm border-b border-stone-200/60 py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo Brand */}
+          
+          {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 via-amber-600 to-amber-800 p-[1px] shadow-lg shadow-amber-600/30 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-slate-950 rounded-[7px] flex items-center justify-center">
-                <Crown className="w-5 h-5 text-amber-400 group-hover:rotate-12 transition-transform duration-300" />
-              </div>
+            <div className="w-10 h-10 rounded-xl bg-amber-700 text-amber-50 flex items-center justify-center shadow-sm">
+              <Hotel className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-cinzel text-lg sm:text-xl font-bold tracking-wider text-gold-gradient block leading-tight">
-                VANSH HOTEL
+              <span className="font-serif-display text-xl font-bold tracking-tight text-stone-900 block leading-tight">
+                Vansh Hotel
               </span>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-slate-400 font-medium block">
-                Royal Suites • Bidhuna
+              <span className="text-[11px] font-medium text-stone-500 block tracking-wider uppercase">
+                Bidhuna • Auraiya
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Nav Links */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs uppercase tracking-widest text-slate-300 hover:text-amber-400 font-medium transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-amber-400 hover:after:w-full after:transition-all after:duration-300"
+                className="text-xs uppercase tracking-wider font-semibold text-stone-600 hover:text-amber-700 transition-colors"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Header Actions */}
+          {/* Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
             <a
               href={`tel:${HOTEL_INFO.primaryPhone}`}
-              className="px-4 py-2 rounded-full border border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-colors"
+              className="px-4 py-2 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-100 font-medium text-xs tracking-wide flex items-center gap-1.5 transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-amber-400" />
+              <Phone className="w-3.5 h-3.5 text-stone-500" />
               Call Reception
             </a>
             <button
               onClick={() => onOpenBooking()}
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs tracking-wide shadow-sm flex items-center gap-2 transition-all"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              WhatsApp Book
+              WhatsApp Booking
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg bg-slate-900 border border-amber-500/30 text-amber-400 hover:bg-slate-800 transition-colors"
-            aria-label="Toggle Navigation Menu"
+            className="lg:hidden p-2 rounded-xl border border-stone-300 text-stone-700 hover:bg-stone-100 transition-colors"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -117,42 +113,47 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed top-[70px] right-0 bottom-0 w-[85%] max-w-sm bg-slate-950 border-l border-amber-500/30 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
-                <Crown className="w-6 h-6 text-amber-400" />
-                <div>
-                  <span className="font-cinzel text-base font-bold text-gold-gradient block">
-                    VANSH HOTEL
+          <div className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-[#faf8f5] border-l border-stone-200 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
+            <div className="space-y-6 pt-4">
+              <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+                <div className="flex items-center gap-2.5">
+                  <Hotel className="w-6 h-6 text-amber-700" />
+                  <span className="font-serif-display text-lg font-bold text-stone-900">
+                    Vansh Hotel
                   </span>
-                  <span className="text-xs text-slate-400">Bharthana Road, Bidhuna</span>
                 </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm uppercase tracking-wider text-slate-200 hover:text-amber-400 font-medium py-2 border-b border-slate-900 flex items-center justify-between"
+                    className="text-sm font-semibold text-stone-700 hover:text-amber-700 py-2 border-b border-stone-200/60 flex items-center justify-between"
                   >
                     {link.name}
-                    <span className="text-amber-500">→</span>
+                    <span className="text-stone-400">→</span>
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-900 space-y-3">
+            <div className="space-y-3 pt-6 border-t border-stone-200">
               <a
                 href={`tel:${HOTEL_INFO.primaryPhone}`}
-                className="w-full py-3 rounded-xl border border-amber-500/40 text-amber-300 text-center font-medium text-sm flex items-center justify-center gap-2 bg-amber-950/30"
+                className="w-full py-3 rounded-xl border border-stone-300 text-stone-800 text-center font-semibold text-sm flex items-center justify-center gap-2 bg-white"
               >
-                <Phone className="w-4 h-4 text-amber-400" />
+                <Phone className="w-4 h-4 text-stone-600" />
                 Call +91 {HOTEL_INFO.primaryPhone}
               </a>
               <button
@@ -160,10 +161,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                   setMobileMenuOpen(false);
                   onOpenBooking();
                 }}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-bold text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
-                Book via WhatsApp
+                WhatsApp Reservation
               </button>
             </div>
           </div>

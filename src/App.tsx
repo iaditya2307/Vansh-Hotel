@@ -41,7 +41,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#faf8f5] text-stone-900 flex flex-col font-sans selection:bg-amber-100 selection:text-amber-900">
       
       {/* Sticky Header Navigation */}
       <Navbar onOpenBooking={handleOpenBooking} />

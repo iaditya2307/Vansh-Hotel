@@ -8,7 +8,8 @@ import {
   Wifi, 
   ShieldCheck, 
   Sparkles, 
-  Car 
+  Car,
+  CheckCircle
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -24,20 +25,20 @@ const iconMap: Record<string, React.ElementType> = {
 
 export const AmenitiesGrid: React.FC = () => {
   return (
-    <section id="amenities" className="py-16 lg:py-24 bg-slate-950 relative">
+    <section id="amenities" className="py-16 lg:py-24 bg-[#faf8f5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 text-xs uppercase tracking-widest font-semibold">
-            <Crown className="w-3.5 h-3.5" />
-            World Class Facilities
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/60 text-stone-800 text-xs uppercase tracking-widest font-semibold">
+            <CheckCircle className="w-3.5 h-3.5 text-stone-700" />
+            Guest Comforts
           </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Designed for <span className="text-gold-gradient">Royal Comfort</span>
+          <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
+            Hotel Facilities & <span className="text-amber-800">Amenities</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light">
-            We deliver uncompromised luxury and round-the-clock service to ensure your stay in Bidhuna is memorable and relaxing.
+          <p className="text-stone-600 text-sm sm:text-base font-normal">
+            Everything you need for a comfortable stay in Bidhuna, whether traveling for business, family events, or leisure.
           </p>
         </div>
 
@@ -48,23 +49,18 @@ export const AmenitiesGrid: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="group p-6 rounded-2xl bg-slate-900/60 border border-amber-500/20 hover:border-amber-500/50 hover:bg-slate-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-amber-950/30 flex flex-col justify-between"
+                className="card-clean p-6 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-950/40 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center">
                     <IconComponent className="w-6 h-6" />
                   </div>
-                  <h3 className="font-cinzel text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                  <h3 className="font-serif-display text-lg font-bold text-stone-900">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed font-light">
+                  <p className="text-xs text-stone-600 leading-relaxed">
                     {item.description}
                   </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] font-medium text-amber-400">
-                  <Sparkles className="w-3 h-3" />
-                  <span>24/7 Included</span>
                 </div>
               </div>
             );

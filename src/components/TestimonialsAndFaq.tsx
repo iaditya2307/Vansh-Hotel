@@ -57,11 +57,9 @@ export const TestimonialsAndFaq: React.FC = () => {
                       className={`w-5 h-5 mt-2 shrink-0 transition-transform ${open ? 'rotate-45' : ''}`}
                     />
                   </button>
-                  <div className={`grid transition-[grid-template-rows] duration-300 ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                    <p className="overflow-hidden max-w-2xl text-ink/70 leading-relaxed">
-                      <span className={`block ${open ? 'pb-6' : ''}`}>{faq.a}</span>
-                    </p>
-                  </div>
+                  {open && (
+                    <p className="pb-6 max-w-2xl text-ink/70 leading-relaxed">{faq.a}</p>
+                  )}
                 </div>
               );
             })}

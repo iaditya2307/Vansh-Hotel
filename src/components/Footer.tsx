@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
               <span className="w-12 h-12 rounded-full bg-white/10 p-2.5">
-                <img src="/logo-white.png" alt="Vansh Hotel" className="w-full h-full object-contain" />
+                <img src="/logo-white.png" alt="" className="w-full h-full object-contain" />
               </span>
               <span>
                 <span className="font-display text-3xl block leading-none">Vansh Hotel</span>
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="mt-6 max-w-sm text-ivory/65 leading-relaxed">
-              Air-conditioned hotel in Bidhuna, about 1 km from Durga Mandir. 24-hour front desk on Bharthana Road.
+              Air-conditioned rooms, a 24-hour front desk, and a direct line to the team on Bharthana Road.
             </p>
           </div>
 
@@ -31,7 +31,6 @@ export const Footer: React.FC = () => {
               <li><a className="hover:text-white" href="#amenities">Amenities</a></li>
               <li><a className="hover:text-white" href="#book">Reserve</a></li>
               <li><a className="hover:text-white" href="#faq">Questions</a></li>
-              <li><a className="hover:text-white" href="#bidhuna">Near Durga Mandir</a></li>
             </ul>
           </div>
 
@@ -64,14 +63,6 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="text-ivory/55 pt-2 text-sm">{HOTEL_INFO.address}</li>
-              <li className="pt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm normal-case tracking-normal">
-                <a className="hover:text-brass-bright" href={HOTEL_INFO.googleTravelUrl} target="_blank" rel="noopener noreferrer">
-                  Google listing
-                </a>
-                <a className="hover:text-brass-bright" href={HOTEL_INFO.justdialUrl} target="_blank" rel="noopener noreferrer">
-                  Justdial
-                </a>
-              </li>
             </ul>
           </div>
         </div>

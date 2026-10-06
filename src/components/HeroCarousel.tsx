@@ -35,7 +35,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onSelectRoom, onOpen
         >
           <img
             src={item.image}
-            alt={`${item.title} at Vansh Hotel, Bidhuna`}
+            alt={item.title}
             className={`w-full h-full object-cover ${index === currentIndex ? 'ken-burns' : ''}`}
           />
         </button>
@@ -47,16 +47,13 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onSelectRoom, onOpen
       <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-end pb-44 sm:pb-32">
         <div className="max-w-3xl">
           <p className="text-[11px] sm:text-xs tracking-[0.32em] uppercase text-brass-bright mb-5">
-            Bharthana Road · Auraiya
+            {slide.tag} · Bharthana Road
           </p>
-          <h1 className="font-display text-[3.4rem] sm:text-7xl lg:text-[5.6rem] leading-[0.92] font-medium tracking-tight">
-            Vansh Hotel
+          <h1 className="font-display text-[3.1rem] sm:text-7xl lg:text-[5.6rem] leading-[0.92] font-medium tracking-tight">
+            {slide.title}
           </h1>
-          <p className="mt-4 font-display text-2xl sm:text-4xl text-white/90 leading-tight">
-            Hotel in Bidhuna, near Durga Mandir
-          </p>
           <p className="mt-5 max-w-xl text-base sm:text-lg text-white/80 font-light leading-relaxed">
-            {slide.tag} · {slide.title}. {slide.subtitle}
+            {slide.subtitle}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button

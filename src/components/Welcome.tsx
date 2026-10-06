@@ -5,7 +5,7 @@ const points = [
   { icon: Clock, title: '24-hour desk', text: 'Check in whenever you arrive.' },
   { icon: Snowflake, title: 'Every room is AC', text: 'Climate control, day and night.' },
   { icon: Zap, title: 'Power backup', text: 'Generator cover for the whole stay.' },
-  { icon: IndianRupee, title: 'From ₹1,099', text: 'Clear nightly rates, no surprises.' },
+  { icon: IndianRupee, title: 'From ₹1,000', text: '₹1,000, ₹1,500, or ₹2,500 a night.' },
 ];
 
 export const Welcome: React.FC = () => {

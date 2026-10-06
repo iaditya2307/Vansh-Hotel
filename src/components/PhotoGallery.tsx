@@ -5,7 +5,7 @@ interface PhotoGalleryProps {
   onOpenLightbox: (imageSrc: string, title: string) => void;
 }
 
-const filters = ['All', 'Suites', 'Rooms', 'Family', 'Lobby', 'Exterior'];
+const filters = ['All', 'Rooms', 'Lobby', 'Exterior'];
 
 export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ onOpenLightbox }) => {
   const [activeFilter, setActiveFilter] = useState('All');

@@ -67,7 +67,9 @@ export const RoomDetailModal: React.FC<RoomDetailModalProps> = ({ room, onClose,
         <div className="p-6 sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-[11px] tracking-[0.24em] uppercase text-brass">{room.category}</p>
+              <p className="text-[11px] tracking-[0.24em] uppercase text-brass">
+                ₹{room.price.toLocaleString('en-IN')} a night
+              </p>
               <h3 className="font-display text-4xl mt-2">{room.name}</h3>
             </div>
             <button

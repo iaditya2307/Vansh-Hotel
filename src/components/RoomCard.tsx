@@ -10,11 +10,9 @@ interface RoomCardProps {
 }
 
 const categoryLabel: Record<Room['category'], string> = {
-  presidential: 'Signature',
-  suite: 'Suite',
-  family: 'Family',
-  deluxe: 'Deluxe',
-  classic: 'Classic',
+  double: '₹2,500',
+  attached: '₹1,500',
+  standard: '₹1,000',
 };
 
 export const RoomCard: React.FC<RoomCardProps> = ({ room, onBookRoom, onOpenRoomModal, featured }) => {

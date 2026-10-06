@@ -10,11 +10,9 @@ interface RoomGridProps {
 
 const categories = [
   { id: 'all', label: 'All rooms' },
-  { id: 'presidential', label: 'Signature' },
-  { id: 'suite', label: 'Suites' },
-  { id: 'family', label: 'Family' },
-  { id: 'deluxe', label: 'Deluxe' },
-  { id: 'classic', label: 'Classic' },
+  { id: 'double', label: '₹2,500' },
+  { id: 'attached', label: '₹1,500' },
+  { id: 'standard', label: '₹1,000' },
 ];
 
 export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal }) => {
@@ -29,11 +27,11 @@ export const RoomGrid: React.FC<RoomGridProps> = ({ onBookRoom, onOpenRoomModal 
           <div className="max-w-xl">
             <p className="text-[11px] tracking-[0.32em] uppercase text-brass">The rooms</p>
             <h2 className="font-display text-5xl sm:text-6xl leading-[0.95] mt-4">
-              Seven ways to stay the night.
+              Three nightly rates.
             </h2>
           </div>
           <p className="max-w-sm text-ink/65 leading-relaxed">
-            Air conditioning, attached bath, fresh linen, and a desk that answers. Rates shown are per night.
+            ₹2,500 is a double bed with AC and an attached bathroom. ₹1,500 is AC with an attached bathroom. ₹1,000 is AC, and the bathroom is not attached.
           </p>
         </div>
 

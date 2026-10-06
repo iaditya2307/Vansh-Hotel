@@ -18,7 +18,7 @@ export const QuickBookingForm: React.FC<QuickBookingFormProps> = ({ initialRoomI
     checkIn: today,
     checkOut: tomorrow,
     guests: '2',
-    roomId: initialRoomId || 'presidential-gold',
+    roomId: initialRoomId || 'double-bed',
     note: '',
   });
   const [sending, setSending] = useState(false);

@@ -26,239 +26,113 @@ export const whatsappLink = (text?: string) => {
 export const CAROUSEL_SLIDES: CarouselSlide[] = [
   {
     id: "slide-1",
-    title: "Presidential Suite",
-    subtitle: "Spacious luxury with 3D relief wall, emerald velvet headboard & warm ambient lighting",
-    tag: "Signature Stay",
-    image: "/images/presidential-gold-suite.jpg",
-    roomId: "presidential-gold",
-    ctaText: "View Presidential Suite"
+    title: "Double Bed Room",
+    subtitle: "Double beds, air conditioning, and an attached bathroom.",
+    tag: "₹2,500 a night",
+    image: "/images/family-grand-suite.jpg",
+    roomId: "double-bed",
+    ctaText: "Reserve this room"
   },
   {
     id: "slide-2",
-    title: "Royal Emerald Suite",
-    subtitle: "Relaxing ambient ceiling LED halo with cozy striped wall interior",
-    tag: "Guest Favorite",
-    image: "/images/royal-emerald-suite.jpg",
-    roomId: "royal-emerald",
-    ctaText: "View Emerald Suite"
+    title: "AC Room with Attached Bath",
+    subtitle: "Air conditioning, with the bathroom attached to the room.",
+    tag: "₹1,500 a night",
+    image: "/images/deluxe-room.jpg",
+    roomId: "ac-attached",
+    ctaText: "Reserve this room"
   },
   {
     id: "slide-3",
-    title: "Family Grand Suite",
-    subtitle: "Twin double beds thoughtfully designed for families and group comfort",
-    tag: "Family Choice",
-    image: "/images/family-grand-suite.jpg",
-    roomId: "family-grand",
-    ctaText: "Book Family Suite"
-  },
-  {
-    id: "slide-4",
-    title: "Maharaja Luxury Room",
-    subtitle: "Elegant dark marble accents, tufted headboard & peaceful room setting",
-    tag: "Premium Room",
-    image: "/images/maharaja-luxury-room.jpg",
-    roomId: "maharaja-luxury",
-    ctaText: "Book Maharaja Room"
-  },
-  {
-    id: "slide-5",
-    title: "Executive Timber Room",
-    subtitle: "Teak wood style panelling with comfortable green lounge seating & full AC",
-    tag: "Executive Stay",
-    image: "/images/executive-timber-room.jpg",
-    roomId: "executive-timber",
-    ctaText: "View Executive Room"
+    title: "AC Room",
+    subtitle: "Air conditioning. The bathroom is not attached.",
+    tag: "₹1,000 a night",
+    image: "/images/classic-room.jpg",
+    roomId: "ac-standard",
+    ctaText: "Reserve this room"
   }
 ];
 
 export const ROOMS: Room[] = [
   {
-    id: "presidential-gold",
-    name: "Presidential Suite",
-    category: "presidential",
-    tagline: "Our finest spacious suite featuring a 3D feature wall & plush velvet headboard",
-    price: 1899,
-    originalPrice: 2499,
-    capacity: "2-3 Guests",
-    bedType: "King Size Royal Bed",
-    size: "350 sq. ft.",
-    image: "/images/presidential-gold-suite.jpg",
-    gallery: [
-      "/images/presidential-gold-suite.jpg",
-      "/images/reception.jpg",
-      "/images/lounge.jpg",
-      "/images/corridor.jpg"
-    ],
-    description: "Designed for guest comfort and space. Features a beautifully detailed feature wall, plush headboard, soft warm ceiling lighting, quiet air conditioning, and clean marble flooring.",
-    highlights: [
-      "Custom 3D Feature Wall",
-      "Plush Velvet Headboard",
-      "Soft Ambient Cove Lighting",
-      "Marble Bedside Console"
-    ],
-    amenities: ["Powerful AC", "24/7 Room Service", "High Speed Wi-Fi", "HD Smart TV", "Marble Bath", "Power Backup"],
-    isFeatured: true
-  },
-  {
-    id: "maharaja-luxury",
-    name: "Maharaja Room",
-    category: "suite",
-    tagline: "Dark marble aesthetics with rich tufted headboard & calm lighting",
-    price: 1599,
-    originalPrice: 1999,
+    id: "double-bed",
+    name: "Double Bed Room",
+    category: "double",
+    tagline: "Double beds, air conditioning, and an attached bathroom",
+    price: 2500,
     capacity: "2 Guests",
-    bedType: "King Size Bed",
-    size: "300 sq. ft.",
-    image: "/images/maharaja-luxury-room.jpg",
-    gallery: [
-      "/images/maharaja-luxury-room.jpg",
-      "/images/lounge.jpg",
-      "/images/reception.jpg"
-    ],
-    description: "A peaceful retreat featuring dark marble wall paneling, a comfortable padded headboard, vanity mirror, and round-the-clock air conditioning.",
-    highlights: [
-      "Dark Marble Wall Panel Accent",
-      "Tufted Leatherette Headboard",
-      "Full Vanity Dressing Mirror",
-      "24h Climate Controlled AC"
-    ],
-    amenities: ["Air Conditioning", "Dressing Mirror", "24/7 Hot Water", "Marble Nightstand", "Daily Housekeeping"],
-    isFeatured: true
-  },
-  {
-    id: "royal-emerald",
-    name: "Royal Emerald Suite",
-    category: "suite",
-    tagline: "Relaxing ambient ceiling lights & elegant striped wall design",
-    price: 1499,
-    originalPrice: 1799,
-    capacity: "2 Guests",
-    bedType: "Queen Size Bed",
-    size: "280 sq. ft.",
-    image: "/images/royal-emerald-suite.jpg",
-    gallery: [
-      "/images/royal-emerald-suite.jpg",
-      "/images/deluxe-room.jpg",
-      "/images/lounge.jpg"
-    ],
-    description: "Features soft emerald ceiling halo lighting, double-tone wall styling, full-length vanity mirror, flat screen TV, and comfortable clean bedding.",
-    highlights: [
-      "Soft Emerald Ambient Ceiling Light",
-      "Full Mirror Dressing Unit",
-      "In-room Wall Mounted TV",
-      "Warm Accent Striping"
-    ],
-    amenities: ["Ceiling Ambient Light", "Flat Screen TV", "AC", "Full Mirror", "Soft Clean Linens"],
-    isFeatured: true
-  },
-  {
-    id: "family-grand",
-    name: "Family Grand Suite",
-    category: "family",
-    tagline: "Twin double beds comfortably accommodating families up to 6 guests",
-    price: 2499,
-    originalPrice: 2999,
-    capacity: "4-6 Guests",
-    bedType: "2 Double Beds",
-    size: "450 sq. ft.",
+    bedType: "Double beds",
+    size: "Attached bathroom",
     image: "/images/family-grand-suite.jpg",
     gallery: [
       "/images/family-grand-suite.jpg",
-      "/images/corridor.jpg",
-      "/images/reception.jpg"
+      "/images/presidential-gold-suite.jpg",
+      "/images/royal-emerald-suite.jpg",
+      "/images/maharaja-luxury-room.jpg",
+      "/images/executive-timber-room.jpg"
     ],
-    description: "The perfect setup for families and traveling groups. Offers two large double beds, padded headboards, dual ceiling fans, dedicated AC, and generous floor space.",
+    description: "A double-bed room with air conditioning and its own attached bathroom. Nightly rate is ₹2,500.",
     highlights: [
-      "2 Extra Large Double Beds",
-      "Comfortably Sleeps 4 to 6 Guests",
-      "Dual Ceiling Fans & Full AC",
-      "Spacious Tile Walkway"
+      "Double beds",
+      "Air conditioning",
+      "Attached bathroom"
     ],
-    amenities: ["Twin Double Beds", "High Capacity AC", "Dual Fans", "24h Room Service", "Private Bathroom"],
+    amenities: ["Double beds", "Air conditioning", "Attached bathroom", "24-hour front desk", "Power backup"],
     isFeatured: true
   },
   {
-    id: "executive-timber",
-    name: "Executive Timber Room",
-    category: "deluxe",
-    tagline: "Teak wood style panelling with comfortable armchairs",
-    price: 1399,
-    originalPrice: 1699,
+    id: "ac-attached",
+    name: "AC Room with Attached Bath",
+    category: "attached",
+    tagline: "Air conditioning with an attached bathroom",
+    price: 1500,
     capacity: "2 Guests",
-    bedType: "Double Bed",
-    size: "260 sq. ft.",
-    image: "/images/executive-timber-room.jpg",
-    gallery: [
-      "/images/executive-timber-room.jpg",
-      "/images/lounge.jpg"
-    ],
-    description: "Combines warm natural wood tones with modern guest conveniences. Features teak wood pattern walls, a mirror dressing table, and comfortable seating.",
-    highlights: [
-      "Natural Teak Wood Style Wall",
-      "Comfortable Armchairs",
-      "Quiet & Peaceful Ambience",
-      "Dressing Table"
-    ],
-    amenities: ["Air Conditioning", "Lounge Chairs", "Dressing Mirror", "Room Service", "Clean Linens"],
-    isFeatured: false
-  },
-  {
-    id: "deluxe-ac",
-    name: "Deluxe AC Room",
-    category: "deluxe",
-    tagline: "Teal headboard with soft warm lighting",
-    price: 1299,
-    originalPrice: 1499,
-    capacity: "2 Guests",
-    bedType: "Double Bed",
-    size: "240 sq. ft.",
+    bedType: "AC room",
+    size: "Attached bathroom",
     image: "/images/deluxe-room.jpg",
     gallery: [
       "/images/deluxe-room.jpg",
-      "/images/reception.jpg"
+      "/images/classic-room.jpg",
+      "/images/corridor.jpg"
     ],
-    description: "Cozy and practical for guests seeking a clean, restful room with reliable air conditioning and prompt room service.",
+    description: "An air-conditioned room with an attached bathroom. Nightly rate is ₹1,500.",
     highlights: [
-      "Teal Tufted Headboard",
-      "Soft Recessed Lighting",
-      "Quiet Split AC",
-      "Bedside Station"
+      "Air conditioning",
+      "Attached bathroom"
     ],
-    amenities: ["AC", "Double Bed", "Room Service", "24h Check-in", "Clean Bathroom"],
+    amenities: ["Air conditioning", "Attached bathroom", "24-hour front desk", "Power backup"],
     isFeatured: false
   },
   {
-    id: "classic-ac",
-    name: "Classic AC Room",
-    category: "classic",
-    tagline: "Clean comfortable room with full length mirror & air conditioning",
-    price: 1099,
-    originalPrice: 1299,
+    id: "ac-standard",
+    name: "AC Room",
+    category: "standard",
+    tagline: "Air conditioning. The bathroom is not attached.",
+    price: 1000,
     capacity: "2 Guests",
-    bedType: "Double Bed",
-    size: "220 sq. ft.",
+    bedType: "AC room",
+    size: "Bathroom not attached",
     image: "/images/classic-room.jpg",
     gallery: [
       "/images/classic-room.jpg",
       "/images/corridor.jpg"
     ],
-    description: "An affordable, spotless room featuring floral panel accents, a full mirror, sturdy double bed, and 24/7 air conditioning.",
+    description: "An air-conditioned room. The bathroom is not attached to the room. Nightly rate is ₹1,000.",
     highlights: [
-      "Floral Patterned Accent Panel",
-      "Full Length Mirror",
-      "Compact & Clean Layout"
+      "Air conditioning",
+      "Bathroom is not attached"
     ],
-    amenities: ["Air Conditioning", "Double Bed", "Mirror", "Fast Room Service", "24 Hours Available"],
+    amenities: ["Air conditioning", "Bathroom not attached", "24-hour front desk", "Power backup"],
     isFeatured: false
   }
 ];
 
 export const GALLERY_ITEMS = [
-  { id: "g1", title: "Presidential Suite 3D Relief", category: "Suites", image: "/images/presidential-gold-suite.jpg" },
-  { id: "g2", title: "Royal Emerald Neon Glow", category: "Suites", image: "/images/royal-emerald-suite.jpg" },
-  { id: "g3", title: "Family Grand Double Bed Suite", category: "Family", image: "/images/family-grand-suite.jpg" },
-  { id: "g4", title: "Maharaja Dark Marble Room", category: "Suites", image: "/images/maharaja-luxury-room.jpg" },
-  { id: "g5", title: "Executive Timber Room & Seating", category: "Rooms", image: "/images/executive-timber-room.jpg" },
+  { id: "g1", title: "Double Bed Room", category: "Rooms", image: "/images/presidential-gold-suite.jpg" },
+  { id: "g2", title: "Ceiling Light Room", category: "Rooms", image: "/images/royal-emerald-suite.jpg" },
+  { id: "g3", title: "Double Beds", category: "Rooms", image: "/images/family-grand-suite.jpg" },
+  { id: "g4", title: "Marble Accent Room", category: "Rooms", image: "/images/maharaja-luxury-room.jpg" },
+  { id: "g5", title: "Timber Room & Seating", category: "Rooms", image: "/images/executive-timber-room.jpg" },
   { id: "g6", title: "Hotel Exterior Facade", category: "Exterior", image: "/images/exterior.jpg" },
   { id: "g7", title: "Royal Reception Desk", category: "Lobby", image: "/images/reception.jpg" },
   { id: "g8", title: "VIP Guests Lounge", category: "Lobby", image: "/images/lounge.jpg" },
@@ -314,27 +188,27 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Rajesh Sharma",
     location: "Kanpur",
     rating: 5,
-    comment: "The Presidential Gold Suite exceeded all expectations! The ceiling lighting and 3D wall art gave a true 5-star feel right here in Bidhuna. Extremely polite staff.",
+    comment: "The double bed room was comfortable, the AC worked through the night, and the attached bathroom was clean. Extremely polite staff.",
     date: "October 2026",
-    roomType: "Presidential Gold Suite"
+    roomType: "Double Bed Room"
   },
   {
     id: "t2",
     name: "Dr. Alok Verma",
     location: "Etawah",
     rating: 5,
-    comment: "Stayed in the Family Grand Suite with my family. Having two big double beds in one spacious room was super convenient. Very clean and AC worked perfectly 24 hours.",
+    comment: "Stayed in the double bed room with my family. The room was clean, the bathroom was attached, and the AC worked perfectly.",
     date: "September 2026",
-    roomType: "Family Grand Suite"
+    roomType: "Double Bed Room"
   },
   {
     id: "t3",
     name: "Priya & Amit Singh",
     location: "Lucknow",
     rating: 5,
-    comment: "WhatsApp booking was seamless! Instant response from the front desk. Loved the neon green LED suite. High quality bedding and great location on Bharthana road.",
+    comment: "WhatsApp booking was seamless. Instant response from the front desk, a clean AC room, and a great location on Bharthana Road.",
     date: "September 2026",
-    roomType: "Royal Emerald Suite"
+    roomType: "AC Room with Attached Bath"
   }
 ];
 
@@ -353,7 +227,7 @@ export const FAQS = [
   },
   {
     q: "Are all rooms air-conditioned?",
-    a: "Yes, every single room at Vansh Hotel features dedicated air conditioning with backup power generators."
+    a: "Yes. Every room is air-conditioned. The ₹2,500 double bed room and the ₹1,500 room have an attached bathroom. The ₹1,000 room is air-conditioned, and the bathroom is not attached."
   },
   {
     q: "What payment methods are accepted?",

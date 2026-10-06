@@ -1,7 +1,7 @@
 export interface Room {
   id: string;
   name: string;
-  category: 'presidential' | 'suite' | 'deluxe' | 'family' | 'classic';
+  category: 'double' | 'attached' | 'standard';
   tagline: string;
   price: number;
   originalPrice?: number;

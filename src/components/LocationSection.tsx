@@ -40,10 +40,13 @@ export const LocationSection: React.FC = () => {
           </h2>
           <p className="mt-5 text-ink/70 leading-relaxed flex gap-2">
             <MapPin className="w-4 h-4 mt-1 shrink-0 text-brass" />
-            <span>
+            <address className="not-italic">
               {HOTEL_INFO.address}
               <span className="block text-sm mt-1 text-ink/50">Plus code {HOTEL_INFO.plusCode}</span>
-            </span>
+              <span className="block text-sm mt-2 text-ink/60">
+                About 1 km from Bidhuna Durga Mandir.
+              </span>
+            </address>
           </p>
 
           <div className="mt-8 divide-y divide-line border-y border-line">
@@ -68,14 +71,24 @@ export const LocationSection: React.FC = () => {
             ))}
           </div>
 
-          <a
-            href={HOTEL_INFO.googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 self-start px-6 py-3.5 rounded-full bg-ink text-ivory text-sm tracking-[0.14em] uppercase hover:bg-brass transition-colors"
-          >
-            Open in Google Maps
-          </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={HOTEL_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-full bg-ink text-ivory text-sm tracking-[0.14em] uppercase hover:bg-brass transition-colors"
+            >
+              Open in Google Maps
+            </a>
+            <a
+              href={HOTEL_INFO.justdialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-full border border-line text-sm tracking-[0.14em] uppercase hover:border-ink transition-colors"
+            >
+              Justdial
+            </a>
+          </div>
         </div>
 
         <div className="lg:col-span-7 rounded-[1.6rem] overflow-hidden min-h-[420px] border border-line">

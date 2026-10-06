@@ -14,6 +14,7 @@ export const HOTEL_INFO = {
   whatsappPhone: "919760662179",
   email: "vanshhotel92@gmail.com",
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=26.802919,79.501043",
+  googleTravelUrl: "https://www.google.com/travel/hotels/entity/CgoIzdy8teSZjalBEAE",
   justdialUrl: "https://www.justdial.com/Auraiya/Vansh-Hotel-Bidhuna-Bharthana-Road-Bidhuna-Auraiya-Bidhuna/9999P5683-5683-250419084853-M5R5_BZDET",
   embedMapUrl: "https://maps.google.com/maps?q=26.802919,79.501043&hl=en&z=17&output=embed"
 };
@@ -219,18 +220,26 @@ export const FAQS = [
   },
   {
     q: "Is the hotel open 24 hours for check-in?",
-    a: "Yes! Our reception is active 24 hours a day, 7 days a week. Whether you arrive late at night or early morning, our staff is ready to welcome you."
+    a: "Yes. Reception is open 24 hours a day, 7 days a week. Late-night and early-morning arrivals are welcome."
   },
   {
     q: "Where is Vansh Hotel located?",
-    a: "We are located at Vansh Plaza, Bharthana Road, Bidhuna, Auraiya district, Uttar Pradesh 206243 (Plus code: RG32+5C7)."
+    a: "Vansh Hotel is at Vansh Plaza, Bharthana Road, Bidhuna, Auraiya, Uttar Pradesh 206243. Plus code RG32+5C7."
+  },
+  {
+    q: "How far is Vansh Hotel from Durga Mandir, Bidhuna?",
+    a: "Bidhuna Durga Mandir, plus code QGX5+XF5, is about 1 km from the hotel, a short drive from Bharthana Road."
   },
   {
     q: "Are all rooms air-conditioned?",
     a: "Yes. Every room is air-conditioned. The ₹2,500 double bed room and the ₹1,500 room have an attached bathroom. The ₹1,000 room is air-conditioned, and the bathroom is not attached."
   },
   {
+    q: "What are the nightly room rates?",
+    a: "₹2,500 is a double-bed room with air conditioning and an attached bathroom. ₹1,500 is an air-conditioned room with an attached bathroom. ₹1,000 is an air-conditioned room, and the bathroom is not attached."
+  },
+  {
     q: "What payment methods are accepted?",
-    a: "We accept Cash, UPI (GPay, PhonePe, Paytm), and major Bank Transfers at check-in."
+    a: "We accept cash, UPI (GPay, PhonePe, Paytm), and bank transfer at check-in."
   }
 ];

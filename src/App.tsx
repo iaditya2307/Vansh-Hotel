@@ -9,6 +9,7 @@ import { TestimonialsAndFaq } from './components/TestimonialsAndFaq';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
 import { Welcome } from './components/Welcome';
+import { LocalStay } from './components/LocalStay';
 import { FloatingMobileBar } from './components/FloatingMobileBar';
 import { RoomDetailModal } from './components/RoomDetailModal';
 import { ImageViewerModal } from './components/ImageViewerModal';
@@ -52,7 +53,8 @@ export const App: React.FC = () => {
 
       <main className="flex-grow">
         <Welcome />
-        
+        <LocalStay />
+
         {/* Rooms Grid with Category Filter Tabs */}
         <RoomGrid
           onBookRoom={handleOpenBooking}
